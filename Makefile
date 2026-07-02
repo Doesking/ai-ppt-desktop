@@ -75,8 +75,9 @@ help:
 	@echo "  $(GREEN)run-linux$(NC)     在 Linux 上运行"
 	@echo "  $(GREEN)run-web$(NC)       在 Web 上运行"
 	@echo "  $(GREEN)build-macos$(NC)   构建 macOS 版本"
-	@echo "  $(GREEN)build-windows$(NC) 构建 Windows 版本"
-	@echo "  $(GREEN)build-linux$(NC)   构建 Linux 版本"
+	@echo "  $(GREEN)build-windows$(NC)       构建 Windows 版本"
+	@echo "  $(GREEN)build-windows-portable$(NC) 构建 Windows 便携版 (.exe + ZIP)"
+	@echo "  $(GREEN)build-linux$(NC)       构建 Linux 版本"
 	@echo "  $(GREEN)build-web$(NC)     构建 Web 版本"
 	@echo ""
 	@echo "$(BLUE)当前系统:$(NC) $(DETECTED_OS)"
@@ -133,11 +134,22 @@ build-macos:
 	@echo "$(BLUE)[INFO]$(NC) 构建产物: build/macos/Build/Products/Release/"
 
 .PHONY: build-windows
-build-windows:
+build-windows: ## 构建 Windows 版本 (在 Windows 上运行)
 	@echo "$(BLUE)[INFO]$(NC) 构建 Windows 版本..."
 	$(FLUTTER) build windows --release
 	@echo "$(GREEN)[✓]$(NC) Windows 构建完成"
 	@echo "$(BLUE)[INFO]$(NC) 构建产物: build/windows/x64/runner/Release/"
+
+.PHONY: build-windows-portable
+build-windows-portable: build-windows ## 构建 Windows 便携版 + 安装包
+	@echo "$(BLUE)[INFO]$(NC) 打包 Windows 便携版..."
+	@rm -rf dist/ai-ppt-desktop-windows-portable
+	@mkdir -p dist/ai-ppt-desktop-windows-portable
+	@cp -r build/windows/x64/runner/Release/* dist/ai-ppt-desktop-windows-portable/
+	@echo "双击 ai_ppt_desktop.exe 启动应用" > dist/ai-ppt-desktop-windows-portable/使用说明.txt
+	@echo "$(GREEN)[✓]$(NC) 便携版已生成: dist/ai-ppt-desktop-windows-portable/"
+	@cd dist && powershell -Command "Compress-Archive -Path 'ai-ppt-desktop-windows-portable/*' -DestinationPath 'ai-ppt-desktop-windows-portable.zip' -Force" 2>/dev/null && \
+		echo "$(GREEN)[✓]$(NC) ZIP 已生成: dist/ai-ppt-desktop-windows-portable.zip" || true
 
 .PHONY: build-linux
 build-linux:

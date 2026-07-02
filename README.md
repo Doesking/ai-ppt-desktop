@@ -172,16 +172,59 @@ make test     # 运行测试
 
 ## 📦 构建发布版本
 
+### macOS
 ```bash
-# macOS
 flutter build macos --release
 # 产物路径: build/macos/Build/Products/Release/
+```
 
-# Windows
+### Windows
+
+> ⚠️ Flutter Windows 构建需要在 **Windows 系统** 上执行，不支持 macOS/Linux 交叉编译。
+
+**方式一：一键构建脚本（推荐）**
+
+```cmd
+:: 在 Windows 上克隆项目后，双击运行
+scripts\build_windows.bat
+```
+
+脚本自动完成：添加 Windows 平台 → 安装依赖 → 构建 → 生成便携版 + 安装包。
+
+输出产物：
+| 类型 | 路径 | 说明 |
+|------|------|------|
+| 构建产物 | `build\windows\x64\runner\Release\` | Flutter 原始输出 |
+| 便携版 | `dist\ai-ppt-desktop-windows-portable\` | 双击 `.exe` 直接运行 |
+| ZIP 压缩包 | `dist\ai-ppt-desktop-windows-portable.zip` | 可分发的压缩包 |
+| 安装包 | `dist\ai-ppt-desktop-setup.exe` | Inno Setup 安装程序 |
+
+**方式二：手动构建**
+
+```cmd
+:: 1. 添加 Windows 平台（首次）
+flutter create --platforms=windows .
+
+:: 2. 安装依赖
+flutter pub get
+
+:: 3. 构建 Release
 flutter build windows --release
-# 产物路径: build/windows/x64/runner/Release/
+```
 
-# Linux
+**方式三：生成 .exe 安装包**
+
+```cmd
+:: 1. 下载安装 Inno Setup: https://jrsoftware.org/isinfo.php
+:: 2. 运行构建脚本
+scripts\build_windows.bat installer
+:: 或手动编译: 右键 scripts\installer.iss → Compile
+```
+
+**便携版使用**：解压后双击 `启动 AI PPT Desktop.bat` 或 `ai_ppt_desktop.exe` 即可，无需安装。
+
+### Linux
+```bash
 flutter build linux --release
 # 产物路径: build/linux/x64/release/bundle/
 ```

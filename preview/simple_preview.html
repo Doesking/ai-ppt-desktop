@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI PPT Desktop - 简洁预览</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+        }
+        .header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .feature-card h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .feature-card p {
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            color: white;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .tech-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .tech-item {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .tech-item strong {
+            color: #667eea;
+        }
+        .status-complete {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 AI PPT Desktop</h1>
+            <p>基于Flutter Desktop的AI驱动PPT制作桌面应用</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>🚀 核心功能</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🤖 AI生成PPT内容</h3>
+                        <p>基于TensorFlow Lite本地AI引擎，智能生成专业PPT内容，支持多种风格，关键点自动提取。</p>
+                        <p class="status-complete">✅ 已完成</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎨 智能模板推荐</h3>
+                        <p>基于内容分析的智能模板匹配，5种预设模板系统，智能颜色和字体推荐。</p>
+                        <p class="status-complete">✅ 已完成</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎤 语音转PPT</h3>
+                        <p>实时语音录制和识别，音频文件导入和转录，智能内容提取和幻灯片生成。</p>
+                        <p class="status-complete">✅ 已完成</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎬 视频转PPT</h3>
+                        <p>视频音频提取，关键帧分析，场景变化检测，智能内容生成和结构化。</p>
+                        <p class="status-complete">✅ 已完成</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>👥 团队协作</h3>
+                        <p>多人实时协作编辑，会话管理和权限控制，评论和反馈系统。</p>
+                        <p class="status-complete">✅ 已完成</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🏢 企业品牌管理</h3>
+                        <p>品牌配置文件管理，颜色方案和字体管理，品牌指南自动生成。</p>
+                        <p class="status-complete">✅ 已完成</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📊 项目统计</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">29</div>
+                        <div class="stat-label">Dart源文件</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">158</div>
+                        <div class="stat-label">依赖包</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">UI页面</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">功能模块</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">测试文件</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">文档文件</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🛠️ 技术架构</h2>
+                <div class="tech-list">
+                    <div class="tech-item">
+                        <strong>前端框架:</strong> Flutter Desktop 3.24.0
+                    </div>
+                    <div class="tech-item">
+                        <strong>编程语言:</strong> Dart 3.5.0
+                    </div>
+                    <div class="tech-item">
+                        <strong>AI引擎:</strong> TensorFlow Lite + ONNX Runtime
+                    </div>
+                    <div class="tech-item">
+                        <strong>PPT生成:</strong> flutter_pptx / dart_pptx
+                    </div>
+                    <div class="tech-item">
+                        <strong>状态管理:</strong> Riverpod
+                    </div>
+                    <div class="tech-item">
+                        <strong>本地存储:</strong> Hive + SQLite
+                    </div>
+                    <div class="tech-item">
+                        <strong>音频处理:</strong> flutter_sound + just_audio
+                    </div>
+                    <div class="tech-item">
+                        <strong>视频处理:</strong> video_player + ffmpeg
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🎯 功能完成度</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>核心功能</h3>
+                        <p>✅ AI生成PPT内容<br>✅ 智能模板推荐<br>✅ 自动排版和设计<br>✅ 语音/视频转PPT</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>高级功能</h3>
+                        <p>✅ 团队协作功能<br>✅ 企业品牌管理<br>✅ 多媒体处理<br>✅ AI引擎集成</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>用户界面</h3>
+                        <p>✅ 主页界面<br>✅ PPT编辑器<br>✅ 设置页面<br>✅ 品牌管理</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>质量保证</h3>
+                        <p>✅ 错误处理<br>✅ 性能监控<br>✅ 用户文档<br>✅ 测试覆盖</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📁 项目结构</h2>
+                <div class="feature-card">
+                    <p><strong>ai-ppt-desktop/</strong></p>
+                    <p>├── <strong>lib/</strong> - 源代码目录</p>
+                    <p>│   ├── <strong>ai/</strong> - AI功能模块</p>
+                    <p>│   ├── <strong>core/</strong> - 核心功能</p>
+                    <p>│   ├── <strong>data/</strong> - 数据层</p>
+                    <p>│   └── <strong>presentation/</strong> - UI表现层</p>
+                    <p>├── <strong>test/</strong> - 测试代码</p>
+                    <p>├── <strong>docs/</strong> - 文档目录</p>
+                    <p>├── <strong>scripts/</strong> - 脚本目录</p>
+                    <p>└── <strong>preview/</strong> - 预览目录</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🎯 AI PPT Desktop - 让PPT制作更智能、更高效</p>
+            <p>版本: 1.0.0 | 构建: 2026年7月2日 | 开发团队: AI PPT Desktop Team</p>
+        </div>
+    </div>
+</body>
+</html>

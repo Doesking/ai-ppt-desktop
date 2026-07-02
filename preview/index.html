@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI PPT Desktop - 项目预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .preview-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .card-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .card-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-features li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .card-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .status-complete {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .tech-stack {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .tech-stack h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .tech-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tech-item h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .tech-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .stats-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .screenshots-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .screenshot {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            border: 2px dashed #ddd;
+        }
+        
+        .screenshot-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .screenshot-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .screenshot-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+            opacity: 0.8;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 AI PPT Desktop</h1>
+            <p>基于Flutter Desktop的AI驱动PPT制作桌面应用</p>
+            <div>
+                <a href="#features" class="button">功能特性</a>
+                <a href="#tech" class="button">技术架构</a>
+                <a href="#stats" class="button">项目统计</a>
+            </div>
+        </div>
+        
+        <div class="preview-grid" id="features">
+            <div class="preview-card">
+                <div class="card-icon">🤖</div>
+                <h3 class="card-title">AI生成PPT内容</h3>
+                <p class="card-description">基于TensorFlow Lite本地AI引擎，智能生成专业PPT内容</p>
+                <ul class="card-features">
+                    <li>智能内容生成和结构化</li>
+                    <li>多种风格支持（商务、学术、创意）</li>
+                    <li>关键点自动提取</li>
+                    <li>本地推理保证数据安全</li>
+                </ul>
+                <span class="card-status status-complete">✅ 已完成</span>
+            </div>
+            
+            <div class="preview-card">
+                <div class="card-icon">🎨</div>
+                <h3 class="card-title">智能模板推荐</h3>
+                <p class="card-description">基于内容分析的智能模板匹配和推荐系统</p>
+                <ul class="card-features">
+                    <li>5种预设模板系统</li>
+                    <li>智能颜色和字体推荐</li>
+                    <li>品牌一致性保证</li>
+                    <li>自动布局优化</li>
+                </ul>
+                <span class="card-status status-complete">✅ 已完成</span>
+            </div>
+            
+            <div class="preview-card">
+                <div class="card-icon">🎤</div>
+                <h3 class="card-title">语音转PPT</h3>
+                <p class="card-description">实时语音录制和识别，自动生成演示文稿</p>
+                <ul class="card-features">
+                    <li>实时语音录制和识别</li>
+                    <li>音频文件导入和转录</li>
+                    <li>智能内容提取</li>
+                    <li>多语言支持</li>
+                </ul>
+                <span class="card-status status-complete">✅ 已完成</span>
+            </div>
+            
+            <div class="preview-card">
+                <div class="card-icon">🎬</div>
+                <h3 class="card-title">视频转PPT</h3>
+                <p class="card-description">从视频文件中提取内容，生成结构化演示文稿</p>
+                <ul class="card-features">
+                    <li>视频音频提取</li>
+                    <li>关键帧分析</li>
+                    <li>场景变化检测</li>
+                    <li>智能内容生成</li>
+                </ul>
+                <span class="card-status status-complete">✅ 已完成</span>
+            </div>
+            
+            <div class="preview-card">
+                <div class="card-icon">👥</div>
+                <h3 class="card-title">团队协作</h3>
+                <p class="card-description">多人实时协作编辑，提升团队工作效率</p>
+                <ul class="card-features">
+                    <li>实时多人协作编辑</li>
+                    <li>会话管理和权限控制</li>
+                    <li>评论和反馈系统</li>
+                    <li>版本历史追踪</li>
+                </ul>
+                <span class="card-status status-complete">✅ 已完成</span>
+            </div>
+            
+            <div class="preview-card">
+                <div class="card-icon">🏢</div>
+                <h3 class="card-title">品牌管理</h3>
+                <p class="card-description">企业品牌配置和管理，保证品牌一致性</p>
+                <ul class="card-features">
+                    <li>品牌配置文件管理</li>
+                    <li>颜色方案和字体管理</li>
+                    <li>Logo位置和尺寸规范</li>
+                    <li>品牌指南自动生成</li>
+                </ul>
+                <span class="card-status status-complete">✅ 已完成</span>
+            </div>
+        </div>
+        
+        <div class="tech-stack" id="tech">
+            <h2>🛠️ 技术架构</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>前端框架</h4>
+                    <p>Flutter Desktop 3.24.0</p>
+                </div>
+                <div class="tech-item">
+                    <h4>编程语言</h4>
+                    <p>Dart 3.5.0</p>
+                </div>
+                <div class="tech-item">
+                    <h4>AI引擎</h4>
+                    <p>TensorFlow Lite + ONNX Runtime</p>
+                </div>
+                <div class="tech-item">
+                    <h4>PPT生成</h4>
+                    <p>flutter_pptx / dart_pptx</p>
+                </div>
+                <div class="tech-item">
+                    <h4>状态管理</h4>
+                    <p>Riverpod</p>
+                </div>
+                <div class="tech-item">
+                    <h4>本地存储</h4>
+                    <p>Hive + SQLite</p>
+                </div>
+                <div class="tech-item">
+                    <h4>音频处理</h4>
+                    <p>flutter_sound + just_audio</p>
+                </div>
+                <div class="tech-item">
+                    <h4>视频处理</h4>
+                    <p>video_player + ffmpeg</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-section" id="stats">
+            <h2>📊 项目统计</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">29</div>
+                    <div class="stat-label">Dart源文件</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">158</div>
+                    <div class="stat-label">依赖包</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">UI页面</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">功能模块</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">测试文件</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">文档文件</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="screenshots-section">
+            <h2>📱 界面预览</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot">
+                    <div class="screenshot-icon">🏠</div>
+                    <div class="screenshot-title">主页面</div>
+                    <div class="screenshot-desc">功能导航和快速入口</div>
+                </div>
+                <div class="screenshot">
+                    <div class="screenshot-icon">📝</div>
+                    <div class="screenshot-title">PPT编辑器</div>
+                    <div class="screenshot-desc">完整的编辑和预览界面</div>
+                </div>
+                <div class="screenshot">
+                    <div class="screenshot-icon">⚙️</div>
+                    <div class="screenshot-title">设置页面</div>
+                    <div class="screenshot-desc">用户偏好和应用配置</div>
+                </div>
+                <div class="screenshot">
+                    <div class="screenshot-icon">🎨</div>
+                    <div class="screenshot-title">品牌管理</div>
+                    <div class="screenshot-desc">品牌配置和应用界面</div>
+                </div>
+                <div class="screenshot">
+                    <div class="screenshot-icon">👥</div>
+                    <div class="screenshot-title">协作界面</div>
+                    <div class="screenshot-desc">实时协作和沟通界面</div>
+                </div>
+                <div class="screenshot">
+                    <div class="screenshot-icon">❓</div>
+                    <div class="screenshot-title">帮助文档</div>
+                    <div class="screenshot-desc">完整的帮助系统</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🎯 AI PPT Desktop - 让PPT制作更智能、更高效</p>
+            <p>基于Flutter Desktop + 本地AI模型</p>
+            <p>版本: 1.0.0 | 构建: 2026.07.02</p>
+        </div>
+    </div>
+    
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 卡片动画
+        const cards = document.querySelectorAll('.preview-card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // 统计数字动画
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.textContent);
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    stat.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    stat.textContent = Math.floor(current);
+                }
+            }, 30);
+        });
+    </script>
+</body>
+</html>
